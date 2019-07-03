@@ -27,11 +27,11 @@ uselib masm32, comctl32, ws2_32
 .code
 start:
  
-call GetCommandLine ; результат будет помещен в eax
+call GetCommandLine ; 
  
 push 0
 push chr$("Command Line")
-push eax ; текст для вывода берем из eax
+push eax ;
 push 0
 call MessageBox
  
