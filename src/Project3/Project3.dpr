@@ -1,9 +1,8 @@
 program Project3;
 
 uses
-  Forms,                                                       
+  Forms,
   Unit3 in 'Unit3.pas' {Form3};
-  //Unit3 in '..\..\Documents\Borland Studio Projects\Unit3.pas' {Form3};
 
 {$R *.res}
 
