@@ -8,14 +8,16 @@ uses
 
 type
   TForm3 = class(TForm)
-    Button1: TButton;
-    Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Image1: TImage;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
+    Button1: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -31,22 +33,52 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm3.Button1Click(Sender: TObject);
+procedure TForm3.fDrawTable();
 var i,g:integer;
 begin
-cell:=StrToInt(Edit1.Text);
-x:=StrToInt(Edit3.Text);
-y:=StrToInt(Edit2.Text);
+  cell:=StrToInt(Edit1.Text);
+  x:=StrToInt(Edit3.Text);
+  y:=StrToInt(Edit2.Text);
 for i:= 0 to x do
- begin
-  image1.Canvas.MoveTo(i*cell,0);
-  image1.Canvas.LineTo(i*cell,625);
- end;
- for g := 0 to y do
- begin
-  image1.Canvas.MoveTo(0,g*cell);
-  image1.Canvas.LineTo(1078,g*cell);
+  begin
+    image1.Canvas.MoveTo(i*cell,0);
+    image1.Canvas.LineTo(i*cell,image1.Height);
+  end;
+for g := 0 to y do
+  begin
+    image1.Canvas.MoveTo(0,g*cell);
+    image1.Canvas.LineTo(image1.Width,g*cell);
+  end;
+ With image1.Canvas do
+ Begin
+   Pen.Width:=1;
+   Pen.Color:=clGreen;
+   Brush.Color:=clGreen;
+   Polygon([Point(0,0),Point(cell,0),Point(cell,cell),Point(0,cell)]);
  end;
 end;
 
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+  fDrawTable();
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+Edit1.Text:='50';
+Edit2.Text:='10';
+Edit3.Text:='10';
+fDrawTable();
+end;
+
+procedure TForm3.FormKeyPress(Sender: TObject; var Key: Char );
+var i,g:integer;
+begin
+if (Key in ['W','w']) then
+
+end;
+end;
 end.
+
+
+
