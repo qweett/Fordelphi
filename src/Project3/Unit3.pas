@@ -19,6 +19,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Button1Click(Sender: TObject);
+    procedure fDrawTable();
   private
     { Private declarations }
   public
@@ -39,23 +40,26 @@ begin
   cell:=StrToInt(Edit1.Text);
   x:=StrToInt(Edit3.Text);
   y:=StrToInt(Edit2.Text);
-for i:= 0 to x do
+    
+  for i:= 0 to x do
   begin
     image1.Canvas.MoveTo(i*cell,0);
     image1.Canvas.LineTo(i*cell,image1.Height);
   end;
-for g := 0 to y do
+
+  for g := 0 to y do
   begin
     image1.Canvas.MoveTo(0,g*cell);
     image1.Canvas.LineTo(image1.Width,g*cell);
   end;
- With image1.Canvas do
- Begin
-   Pen.Width:=1;
-   Pen.Color:=clGreen;
-   Brush.Color:=clGreen;
-   Polygon([Point(0,0),Point(cell,0),Point(cell,cell),Point(0,cell)]);
- end;
+
+  with image1.Canvas do
+  begin
+    Pen.Width:=1;
+    Pen.Color:=clGreen;
+    Brush.Color:=clGreen;
+    Polygon([Point(0,0),Point(cell,0),Point(cell,cell),Point(0,cell)]);
+  end;
 end;
 
 procedure TForm3.Button1Click(Sender: TObject);
@@ -65,19 +69,21 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 begin
-Edit1.Text:='50';
-Edit2.Text:='10';
-Edit3.Text:='10';
-fDrawTable();
+  Edit1.Text:='50';
+  Edit2.Text:='10';
+  Edit3.Text:='10';
+  fDrawTable();
 end;
 
 procedure TForm3.FormKeyPress(Sender: TObject; var Key: Char );
 var i,g:integer;
 begin
-if (Key in ['W','w']) then
+  if (Key in ['W','w']) then
+  begin
+    Edit1.Text := 'test';
+  end;
+end;
 
-end;
-end;
 end.
 
 
